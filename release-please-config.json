@@ -1,0 +1,12 @@
+{
+  "extra-files": [
+    "gradle.properties"
+  ],
+  "include-component-in-tag": false,
+  "include-v-in-tag": false,
+  "packages": {
+    ".": {}
+  },
+  "pull-request-header": ":robot: I have created a release",
+  "release-type": "simple"
+}
