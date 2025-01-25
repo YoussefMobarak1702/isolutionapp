@@ -46,7 +46,7 @@ jobs:
       shell: bash
       env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         BASIC_CONFIG=.pre-commit-config-basic.yaml
         pre-commit run --config $BASIC_CONFIG --color=always --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}
