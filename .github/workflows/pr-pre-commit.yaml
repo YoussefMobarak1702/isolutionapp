@@ -1,0 +1,55 @@
+name: Pre-commit basic checks
+
+on:
+  workflow_call:
+
+jobs:
+
+  pre-commit-basic-checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+          fetch-depth: 0
+    - name: Setup pre-commit
+      shell: bash
+      run: |
+        python3 -m pip install pre-commit
+
+        BASIC_CONFIG=.pre-commit-config-basic.yaml
+
+        cat <<EOF > $BASIC_CONFIG
+        repos:
+          - repo: https://github.com/pre-commit/pre-commit-hooks
+            rev: v4.5.0 # Get the latest from: https://github.com/pre-commit/pre-commit-hooks/releases
+            hooks:
+            - id: mixed-line-ending
+              args: [--fix=lf]
+            - id: trailing-whitespace
+              args: [--markdown-linebreak-ext=md]
+            - id: end-of-file-fixer
+            - id: check-case-conflict
+            - id: check-symlinks
+            - id: destroyed-symlinks
+            - id: fix-byte-order-marker
+        EOF
+    - name: Cache plugins
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pre-commit
+        key: pre-commit-${{ hashFiles('.pre-commit-config-basic.yaml') }}
+    - name: Run
+      shell: bash
+      env:
+        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        BASIC_CONFIG=.pre-commit-config-basic.yaml
+        pre-commit run --config $BASIC_CONFIG --color=always --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}
+        rm $BASIC_CONFIG
+
+        if [[ $? == 0 ]]; then echo "Success!"; fi
