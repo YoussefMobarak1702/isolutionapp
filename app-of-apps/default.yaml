@@ -11,7 +11,7 @@ spec:
   source:
     directory:
       recurse: true
-    path: app-of-apps/default
+    path: app-of-apps
     targetRevision: main
     repoURL: https://github.com/YoussefMobarak1702/app1
   syncPolicy:
