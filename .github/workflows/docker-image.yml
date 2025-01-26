@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: checkout
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . -t youssefmobarak/app1-docker-java:latest
+    - name: Push image to dockerhub
+      run: |
+        docker login -u youssefmobarak -p ${{secrets.DOK_TOKEN}}
+        docker push youssefmobarak/app1-docker-java:latest
