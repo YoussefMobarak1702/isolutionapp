@@ -15,9 +15,6 @@ spec:
     targetRevision: main
     repoURL: https://github.com/YoussefMobarak1702/app1
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       -CreateNamespace=true
 
