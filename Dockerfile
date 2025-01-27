@@ -13,4 +13,4 @@ COPY /app1 .
 RUN javac main.java
 
 # Define the command to run the application
-CMD ["java", "main"]
+CMD ["java", "HelloWorld"]
