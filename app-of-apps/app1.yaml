@@ -16,5 +16,3 @@ spec:
         - name: app1
           image: youssefmobarak/app1-docker-java:latest
           imagePullPolicy: Always
-          ports:
-            - containerPort: 8000
