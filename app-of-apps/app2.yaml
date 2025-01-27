@@ -16,3 +16,5 @@ spec:
         - name: app2
           image: youssefmobarak/app2-docker-java:latest
           imagePullPolicy: Always
+          port:
+                number: 80
