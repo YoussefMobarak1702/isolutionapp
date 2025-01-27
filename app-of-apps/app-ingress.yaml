@@ -10,14 +10,14 @@ spec:
   - host: "localhost"
     http:
       paths:
-      - path: /
+      - path: 
         pathType: Prefix
         backend:
           service:
             name: app1-service
             port:
               number: 80
-      - path: /
+      - path: 
         pathType: Prefix
         backend:
           service:
