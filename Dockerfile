@@ -7,7 +7,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /app
 
 # Copy the application code to the container
-COPY /app1 /app
+COPY /app1 .
 
 # Compile the Java program
 RUN javac main.java
