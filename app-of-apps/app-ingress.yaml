@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/canary-weight: "20"
 spec:
   rules:
-  - host: "http://localhost:8000"
+  - host: "localhost"
     http:
       paths:
       - path: /
