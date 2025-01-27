@@ -10,7 +10,7 @@ WORKDIR /app
 COPY /app1 .
 
 # Compile the Java program
-RUN javac main.java
+RUN javac HelloWorld.java
 
 # Define the command to run the application
 CMD ["java", "HelloWorld"]
