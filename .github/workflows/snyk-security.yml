@@ -11,7 +11,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '8'
-        distribution: 'alpine'
+        distribution: 'zulu'
 
     - name: Run Sonar Analysis with cloud
       run:  mvn -B verify sonar:sonar -Dsonar.projectKey=dotnetgithubactionsproject -Dsonar.organization=dotnetgithubactionsorg -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
