@@ -9,10 +9,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'zulu'
-          cache: maven
+      with:
+        java-version: '17'
 
     - name: Run Sonar Analysis with cloud
       run:  mvn -B verify sonar:sonar -Dsonar.projectKey=dotnetgithubactionsproject -Dsonar.organization=dotnetgithubactionsorg -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN
