@@ -15,13 +15,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: app1-service
+            name: app2-service
             port:
               number: 80
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: app2-service
+            name: app1-service
             port:
               number: 80
