@@ -12,7 +12,27 @@ spec:
       labels:
         app: app2
     spec:
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        add:
+          - NET_ADMIN
+          - NET_RAW
+        drop:
+          - All
+      fsGroup: 65534
+      runAsUser: 65534
+      runAsNonRoot: true
       containers:
         - name: app2
           image: youssefmobarak/app2-docker-java:latest
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 250m
+              memory: 1Gi
+            requests:
+              cpu: 10m
+              memory: 512Mi

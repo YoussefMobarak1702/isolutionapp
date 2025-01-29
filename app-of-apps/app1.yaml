@@ -12,9 +12,29 @@ spec:
       labels:
         app: app1
     spec:
+      securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        add:
+          - NET_ADMIN
+          - NET_RAW
+        drop:
+          - All
+      fsGroup: 65534
+      runAsUser: 65534
+      runAsNonRoot: true
       containers:
         - name: app1
           image: youssefmobarak/app1-docker-java:latest
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 250m
+              memory: 1Gi
+            requests:
+              cpu: 10m
+    memory: 512Mi
           port:
             number: 80
